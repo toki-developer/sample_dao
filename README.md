@@ -1,13 +1,35 @@
-# Sample Hardhat Project
+# Sample DAO
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+console
 
-Try running some of the following tasks:
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
+## コントラクトの動作確認手順
+
+### Nodeの起動
+```
 npx hardhat node
-npx hardhat run scripts/deploy.ts
+```
+
+### デプロイ
+
+```
+// コンパイル
+npx hardhat compile
+
+// デプロイ
+npx hardhat run --network localhost scripts/deploy.ts
+```
+### コンソールで動作確認
+
+```
+// コンソールの起動
+npx hardhat console --network localhost
+```
+
+```
+// デプロイ済みのコントラクトに接続
+const Contract = await ethers.getContractFactory("TkoToken");
+const contract = await Contract.attach([コントラクトのアドレス])
+
+// contract.関数で、コントラクトの関数を実行できる
 ```

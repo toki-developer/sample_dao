@@ -1,18 +1,13 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+  const TkoToken = await ethers.getContractFactory("TkoToken");
+  const token = await TkoToken.deploy(
+    "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+  );
+  await token.deployed();
 
-  const lockedAmount = ethers.utils.parseEther("1");
-
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
-
-  await lock.deployed();
-
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
+  console.log(`TkoToken deployed to ${token.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
