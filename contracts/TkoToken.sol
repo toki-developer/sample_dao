@@ -2,11 +2,12 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 import "./iTkoToken.sol";
 
-contract TkoToken is iTkoToken, ERC721, Ownable {
+contract TkoToken is iTkoToken, ERC721, Ownable, ReentrancyGuard {
 
     using Strings for uint256;
 
@@ -53,7 +54,7 @@ contract TkoToken is iTkoToken, ERC721, Ownable {
     // public functions
     //******************************
 
-    function buy(uint256 rank) external override onSale payable {
+    function buy(uint256 rank) external override onSale nonReentrant payable {
         require((rank > 0) && (rank < 6) , "TkoToken: Invalid rank");
         require(msg.value == PRICE[rank- 1], "TkoToken: Invalid value");
         require(_nextTokenIdListByRank[rank - 1] % 100000 != 0, "TkoToken: Sold out");
