@@ -21,8 +21,8 @@ interface iTkoToken {
     //******************************
 
     function updateSaleStatus(bool __isOnSale) external;
-    function updateBaseURI(string calldata newBaseURI) external;
-    function freezeMetadata() external;
+    // function updateBaseURI(string calldata newBaseURI) external;
+    // function freezeMetadata() external;
     function withdrawETH() external;
     function setRecipient(address payable __recipient) external;
 }
