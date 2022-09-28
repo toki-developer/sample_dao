@@ -7,22 +7,21 @@ interface iTkoToken {
     // view functions
     //******************************
 
+    function remainingForSale() external view returns (uint256);
+    function remainingReserved() external view returns (uint256);
     function isOnSale() external view returns (bool);
-    function nextTokenId(uint256 rank) external view returns (uint256);
 
     //******************************
     // public functions
     //******************************
 
-    function buy(uint256 rank) external payable;
+    function buy() external payable;
 
     //******************************
     // admin functions
     //******************************
 
     function updateSaleStatus(bool __isOnSale) external;
-    // function updateBaseURI(string calldata newBaseURI) external;
-    // function freezeMetadata() external;
     function withdrawETH() external;
     function setRecipient(address payable __recipient) external;
 }
