@@ -21,6 +21,7 @@ interface iTkoToken {
     // admin functions
     //******************************
 
+    function mintReserved(address to) external;
     function updateSaleStatus(bool __isOnSale) external;
     function withdrawETH() external;
     function setRecipient(address payable __recipient) external;

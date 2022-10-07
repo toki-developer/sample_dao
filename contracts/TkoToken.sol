@@ -73,6 +73,15 @@ contract TkoToken is iTkoToken, ERC721, Ownable, ReentrancyGuard {
     // admin functions
     //******************************
 
+
+    function mintReserved(address to) external override onlyOwner {
+        require(_remainingReserved > 0, "No reserved Token is left");
+        uint256 tokenId = nextTokenId;
+        nextTokenId ++;
+        _remainingReserved --;
+        _safeMint(to, tokenId);
+    }
+
      function updateSaleStatus(bool __isOnSale) external override onlyOwner {
         _isOnSale = __isOnSale;
     }
